@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="//cdn.staticfile.net/Primer/21.0.7/primer.css" rel="stylesheet" />
+    <link rel="icon" href="https://github.githubassets.com/favicons/favicon.svg"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="# 爬虫流程
+
+## 选择目标网站
+
+## 分析网站结构
+
+* 谷歌查看网页结构，确定产品信息在 HTML 中的结构。">
+<meta property="og:title" content="爬虫流程">
+<meta property="og:description" content="# 爬虫流程
+
+## 选择目标网站
+
+## 分析网站结构
+
+* 谷歌查看网页结构，确定产品信息在 HTML 中的结构。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://diner888.github.io/Vickers888.github.io/post/pa-chong-liu-cheng.html">
+<meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
+<title>爬虫流程</title>
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">爬虫流程</h1>
+<div class="title-right">
+    <a href="https://diner888.github.io/Vickers888.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/diner888/Vickers888.github.io/issues/2" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><h1>爬虫流程</h1>
+<h2>选择目标网站</h2>
+<h2>分析网站结构</h2>
+<ul>
+<li>谷歌查看网页结构，确定产品信息在 HTML 中的结构。例如，假设产品信息在 <code class="notranslate">class="item"</code> 的元素中，标题在 <code class="notranslate">class="title"</code> 的子元素中，价格在 <code class="notranslate">class="price"</code> 的子元素中</li>
+<li><strong>Elements（元素面板）</strong>：使用 “元素” 面板可以通过自由操纵 DOM 和 CSS 来重演您网站的布局和设计。</li>
+<li><strong>Console（控制台面板）</strong>：在开发期间，可以使用控制台面板记录诊断信息，或者使用它作为 shell，在页面上与 JavaScript 交互</li>
+<li><strong>Sources（源代码面板）</strong>：在源代码面板中设置断点来调试 JavaScript ，或者通过 Workspaces（工作区）连接本地文件来使用开发者工具的实时编辑器</li>
+<li><strong>Network（网络面板）</strong>：从发起网页页面请求 Request 后得到的各个请求资源信息（包括状态、资源类型、大小、所用时间等），并可以根据这个进行网络性能优化</li>
+<li><strong>Performance（性能面板）</strong>：使用时间轴面板，可以通过记录和查看网站生命周期内发生的各种事件来提高页面运行时的性能</li>
+<li><strong>Memory（内存面板）</strong>：分析 web 应用或者页面的执行时间以及内存使用情况</li>
+<li><strong>Application（应用面板）</strong>：记录网站加载的所有资源信息，包括存储数据（Local Storage、Session Storage、-IndexedDB、Web SQL、Cookies）、缓存数据、字体、图片、脚本、样式表等</li>
+<li><strong>Security（安全面板）</strong>：使用安全面板调试混合内容问题，证书问题等等</li>
+<li><strong>Audits（审核面板）</strong>：对当前网页进行网络利用情况、网页性能方面的诊断，并给出一些优化建议。比如列出所有没有用到的 CSS 文件等</li>
+</ul>
+<h3>network</h3>
+<p>定义：Network 面板记录页面上每个网络操作的相关信息，包括详细的耗时数据、HTTP 请求与响应标头和 Cookie</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/50989770d035a618b6fd9ee8ea791251f8149f2675eb2e4a733042825451fbbf/68747470733a2f2f706963322e7a68696d672e636f6d2f76322d64623763333434653233306234316637313965373237623534326264663135315f722e6a7067"><img src="https://camo.githubusercontent.com/50989770d035a618b6fd9ee8ea791251f8149f2675eb2e4a733042825451fbbf/68747470733a2f2f706963322e7a68696d672e636f6d2f76322d64623763333434653233306234316637313965373237623534326264663135315f722e6a7067" alt="img" data-canonical-src="https://pic2.zhimg.com/v2-db7c344e230b41f719e727b542bdf151_r.jpg" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href=""><img alt="image-20240530221809247" style="max-width: 100%;"></a></p>
+<ul>
+<li><strong>Controls（控件）</strong> 使用这些选项可以控制 Network(网络) 面板的外观和功能</li>
+</ul>
+<p><a target="_blank" rel="noopener noreferrer" href=""><img alt="image-20240530222325274" style="max-width: 100%;"></a></p>
+<ul>
+<li><strong>Filters（过滤器）</strong></li>
+</ul>
+<p><strong>使用这些选项可以控制在请求列表中显示哪些资源</strong></p>
+<p><strong>提示：按住Ctrl（Window / Linux），然后点击过滤器可以同时选择多个过滤器</strong></p>
+<p><strong>此外，筛选框可以实现很多定制化的筛选，比如字符串匹配，关键词筛选等，其中关键词筛选主要有如下几种：</strong></p>
+<ul>
+<li><strong><code class="notranslate">domain</code></strong>：仅显示来自指定域的资源。您可以使用通配符（<em>）来包括多个域。例如，</em>.com 显示以. com 结尾的所有域名中的资源。 DevTools 会在自动完成下拉菜单中自动填充它遇到的所有域。</li>
+<li><strong><code class="notranslate">has-response-header</code></strong>：显示包含指定 HTTP 响应头信息的资源。 DevTools 会在自动完成下拉菜单中自动填充它遇到的所有响应头。</li>
+<li><strong><code class="notranslate">is</code></strong>：通过 is:running 找出 WebSocket 请求。</li>
+<li><strong><code class="notranslate">larger-than(大于)</code></strong> ：显示大于指定大小的资源（以字节为单位）。设置值 1000 等效于设置值 1k。</li>
+<li><strong><code class="notranslate">method(方法)</code></strong> ：显示通过指定的 HTTP 方法类型检索的资源。DevTools 使用它遇到的所有 HTTP 方法填充下拉列表。</li>
+<li><strong><code class="notranslate">mime-type（mime类型</code></strong>：显示指定 MIME 类型的资源。 DevTools 使用它遇到的所有 MIME 类型填充下拉列表。</li>
+<li><strong><code class="notranslate">mixed-content（混合内容</code></strong>：显示所有混合内容资源（mixed-content:all）或仅显示当前显示的内容（mixed-content:displayed）。</li>
+<li><strong><code class="notranslate">Scheme（协议）</code></strong>：显示通过不受保护的 HTTP（scheme:http）或受保护的 HTTPS（scheme:https）检索的资源。</li>
+<li><strong><code class="notranslate">set-cookie-domain（cookie域）</code></strong>：显示具有 Set-Cookie 头, 并且其 Domain 属性与指定值匹配的资源。DevTools 会在自动完成下拉菜单中自动填充它遇到的所有 Cookie 域。</li>
+<li><strong><code class="notranslate">set-cookie-name（cookie名）</code></strong>：显示具有 Set-Cookie 头, 并且名称与指定值匹配的资源。DevTools 会在自动完成下拉菜单中自动填充它遇到的所有 Cookie 名。</li>
+<li><strong><code class="notranslate">set-cookie-value（cookie值）</code></strong>：显示具有 Set-Cookie 头, 并且值与指定值匹配的资源。DevTools 会在自动完成下拉菜单中自动填充它遇到的所有 cookie 值。</li>
+<li><strong><code class="notranslate">status-code（状态码）</code></strong>：仅显示其 HTTP 状态代码与指定代码匹配的资源。DevTools 会在自动完成下拉菜单中自动填充它遇到的所有状态码。</li>
+</ul>
+<p><strong>通过域名筛选资源</strong></p>
+<ul>
+<li><strong>用法</strong>：<code class="notranslate">domain:example.com</code></li>
+<li><strong>示例</strong>：仅显示来自 <code class="notranslate">example.com</code> 域的资源。</li>
+<li><strong>操作</strong>：在过滤框中输入 <code class="notranslate">domain:example.com</code>。</li>
+</ul>
+<p><strong>通过响应头筛选资源</strong></p>
+<ul>
+<li><strong>用法</strong>：<code class="notranslate">has-response-header:Content-Type</code></li>
+<li><strong>示例</strong>：显示包含 <code class="notranslate">Content-Type</code> 响应头的资源。</li>
+<li><strong>操作</strong>：在过滤框中输入 <code class="notranslate">has-response-header:Content-Type</code>。</li>
+</ul>
+<p><strong>通过 WebSocket 状态筛选资源</strong></p>
+<ul>
+<li><strong>用法</strong>：<code class="notranslate">is:running</code></li>
+<li><strong>示例</strong>：找出正在运行的 WebSocket 请求。</li>
+<li><strong>操作</strong>：在过滤框中输入 <code class="notranslate">is:running</code>。</li>
+</ul>
+<p><strong>通过资源大小筛选资源</strong></p>
+<ul>
+<li><strong>用法</strong>：<code class="notranslate">larger-than:1000</code></li>
+<li><strong>示例</strong>：显示大于 1000 字节的资源。</li>
+<li><strong>操作</strong>：在过滤框中输入 <code class="notranslate">larger-than:1000</code>。</li>
+</ul>
+<p><strong>通过 HTTP 方法类型筛选资源</strong></p>
+<ul>
+<li><strong>用法</strong>：<code class="notranslate">method:GET</code></li>
+<li><strong>示例</strong>：显示所有使用 <code class="notranslate">GET</code> 方法的请求。</li>
+<li><strong>操作</strong>：在过滤框中输入 <code class="notranslate">method:GET</code>。</li>
+</ul>
+<p><strong>通过 MIME 类型筛选资源</strong></p>
+<ul>
+<li><strong>用法</strong>：<code class="notranslate">mime-type:image/png</code></li>
+<li><strong>示例</strong>：显示所有 <code class="notranslate">image/png</code> 类型的资源。</li>
+<li><strong>操作</strong>：在过滤框中输入 <code class="notranslate">mime-type:image/png</code>。</li>
+</ul>
+<p><strong>通过混合内容筛选资源</strong></p>
+<ul>
+<li><strong>用法</strong>：<code class="notranslate">mixed-content:all</code> 或 <code class="notranslate">mixed-content:displayed</code></li>
+<li><strong>示例</strong>：显示所有混合内容资源。</li>
+<li><strong>操作</strong>：在过滤框中输入 <code class="notranslate">mixed-content:all</code>。</li>
+</ul>
+<p><strong>通过协议筛选资源</strong></p>
+<ul>
+<li><strong>用法</strong>：<code class="notranslate">scheme:https</code></li>
+<li><strong>示例</strong>：显示所有通过 HTTPS 协议检索的资源。</li>
+<li><strong>操作</strong>：在过滤框中输入 <code class="notranslate">scheme:https</code>。</li>
+</ul>
+<p><strong>通过 Cookie 域筛选资源</strong></p>
+<ul>
+<li><strong>用法</strong>：<code class="notranslate">set-cookie-domain:example.com</code></li>
+<li><strong>示例</strong>：显示具有 <code class="notranslate">Set-Cookie</code> 头并且 <code class="notranslate">Domain</code> 属性为 <code class="notranslate">example.com</code> 的资源。</li>
+<li><strong>操作</strong>：在过滤框中输入 <code class="notranslate">set-cookie-domain:example.com</code>。</li>
+</ul>
+<p><strong>通过 Cookie 名筛选资源</strong></p>
+<ul>
+<li><strong>用法</strong>：<code class="notranslate">set-cookie-name:session_id</code></li>
+<li><strong>示例</strong>：显示具有 <code class="notranslate">Set-Cookie</code> 头并且 <code class="notranslate">Name</code> 为 <code class="notranslate">session_id</code> 的资源。</li>
+<li><strong>操作</strong>：在过滤框中输入 <code class="notranslate">set-cookie-name:session_id</code>。</li>
+</ul>
+<p><strong>通过 Cookie 值筛选资源</strong></p>
+<ul>
+<li><strong>用法</strong>：<code class="notranslate">set-cookie-value:abc123</code></li>
+<li><strong>示例</strong>：显示具有 <code class="notranslate">Set-Cookie</code> 头并且 <code class="notranslate">Value</code> 为 <code class="notranslate">abc123</code> 的资源。</li>
+<li><strong>操作</strong>：在过滤框中输入 <code class="notranslate">set-cookie-value:abc123</code>。</li>
+</ul>
+<p><strong>通过状态码筛选资源</strong></p>
+<ul>
+<li><strong>用法</strong>：<code class="notranslate">status-code:404</code></li>
+<li><strong>示例</strong>：显示所有 HTTP 状态码为 <code class="notranslate">404</code> 的资源。</li>
+<li><strong>操作</strong>：在过滤框中输入 <code class="notranslate">status-code:404</code>。</li>
+</ul>
+<p><strong>示例操作</strong></p>
+<p>假设你想查看当前页面中所有使用 <code class="notranslate">POST</code> 方法并且响应头中包含 <code class="notranslate">Content-Type</code> 的请求，你可以在过滤框中输入以下内容：</p>
+<pre lang="plaintext" class="notranslate"><code class="notranslate">method:POST has-response-header:Content-Type
+</code></pre>
+<p>这样，你会看到符合这些条件的所有资源。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/2f27a4293f00902a710b67373d9961570d117f64cf16c9e12b90009103fffd96/68747470733a2f2f706963332e7a68696d672e636f6d2f76322d36303265366431373865373261386466333831303666393563343533386334615f722e6a7067"><img src="https://camo.githubusercontent.com/2f27a4293f00902a710b67373d9961570d117f64cf16c9e12b90009103fffd96/68747470733a2f2f706963332e7a68696d672e636f6d2f76322d36303265366431373865373261386466333831303666393563343533386334615f722e6a7067" alt="img" data-canonical-src="https://pic3.zhimg.com/v2-602e6d178e72a8df38106f95c4538c4a_r.jpg" style="max-width: 100%;"></a></p>
+<ul>
+<li><strong>Overview（概览）</strong></li>
+</ul>
+<p>这个图表显示检索资源的时间轴。如果您看到多个垂直堆叠的栏，这意味着这些资源被同时检索。</p>
+<ul>
+<li><strong>Requests Table（请求列表）</strong></li>
+</ul>
+<p>此列表列出了检索的每个资源。默认情况下，此表按时间顺序排序，也就是最早的资源在顶部。单击资源名称可以获得更多信息。提示：右键单击列表的任何标题栏可以以添加或删除信息列。</p>
+<p><strong>查看单个资源的详细信息</strong></p>
+<p>点击资源名称（位于 Requests Table 的 Name 列下）可以查看与该资源有关的更多信息。</p>
+<p>可用标签会因您所选择资源类型的不同而不同，但下面四个标签最常见：</p>
+<ul>
+<li>**[<a href="https://link.zhihu.com/?target=https%3A//static.dcxueyuan.com/content/disk/train/other/27973d34-2af3-481d-9a97-8850a177d266.html%23jump1" rel="nofollow">Headers</a>](<a href="https://link.zhihu.com/?target=https%3A//static.dcxueyuan.com/content/disk/train/other/27973d34-2af3-481d-9a97-8850a177d266.html%23jump1)**%EF%BC%9A%E4%B8%8E%E8%B5%84%E6%BA%90%E5%85%B3%E8%81%94%E7%9A%84" rel="nofollow">https://link.zhihu.com/?target=https%3A//static.dcxueyuan.com/content/disk/train/other/27973d34-2af3-481d-9a97-8850a177d266.html%23jump1)**：与资源关联的</a> HTTP 标头。</li>
+<li>**[<a href="https://link.zhihu.com/?target=https%3A//static.dcxueyuan.com/content/disk/train/other/27973d34-2af3-481d-9a97-8850a177d266.html%23jump2" rel="nofollow">Preview</a>](<a href="https://link.zhihu.com/?target=https%3A//static.dcxueyuan.com/content/disk/train/other/27973d34-2af3-481d-9a97-8850a177d266.html%23jump2)**%EF%BC%9AJSON%E3%80%81%E5%9B%BE%E5%83%8F%E5%92%8C%E6%96%87%E6%9C%AC%E8%B5%84%E6%BA%90%E7%9A%84%E9%A2%84%E8%A7%88%E3%80%82" rel="nofollow">https://link.zhihu.com/?target=https%3A//static.dcxueyuan.com/content/disk/train/other/27973d34-2af3-481d-9a97-8850a177d266.html%23jump2)**：JSON、图像和文本资源的预览。</a></li>
+<li>**[<a href="https://link.zhihu.com/?target=https%3A//static.dcxueyuan.com/content/disk/train/other/27973d34-2af3-481d-9a97-8850a177d266.html%23jump3" rel="nofollow">Response</a>](<a href="https://link.zhihu.com/?target=https%3A//static.dcxueyuan.com/content/disk/train/other/27973d34-2af3-481d-9a97-8850a177d266.html%23jump3)**%EF%BC%9AHTTP" rel="nofollow">https://link.zhihu.com/?target=https%3A//static.dcxueyuan.com/content/disk/train/other/27973d34-2af3-481d-9a97-8850a177d266.html%23jump3)**：HTTP</a> 响应数据（如果存在）。</li>
+<li><strong>Timing</strong>：资源请求生命周期的精细分解。</li>
+</ul>
+<p><strong><code class="notranslate">Headers（查看 HTTP 标头）</code></strong> 点击 <strong><code class="notranslate">Headers</code></strong> 可以显示该资源的标头。 <strong><code class="notranslate">Headers</code></strong> 标签可以显示资源的请求网址、HTTP 方法以及响应状态代码。 此外，该标签还会列出 HTTP 响应和请求标头、它们的值以及任何查询字符串参数</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/40a8c55e7f43dc9d7c9cf50f340419cf885770b5cfb23b3d7941a6606fb21ee4/68747470733a2f2f706963332e7a68696d672e636f6d2f76322d34663933656664356632623861373235376439663264613162393564366463325f722e6a7067"><img src="https://camo.githubusercontent.com/40a8c55e7f43dc9d7c9cf50f340419cf885770b5cfb23b3d7941a6606fb21ee4/68747470733a2f2f706963332e7a68696d672e636f6d2f76322d34663933656664356632623861373235376439663264613162393564366463325f722e6a7067" alt="img" data-canonical-src="https://pic3.zhimg.com/v2-4f93efd5f2b8a7257d9f2da1b95d6dc2_r.jpg" style="max-width: 100%;"></a></p>
+<p>点击 <strong><code class="notranslate">Preview</code></strong> 标签可以查看该资源的预览。<strong><code class="notranslate">Preview</code></strong> 标签可能显示一些有用的信息，也可能不显示，具体取决于您所选择资源的类型</p>
+<ul>
+<li><strong>Response（查看 HTTP 响应内容）</strong><br>
+点击 Response 标签可以查看资源未格式化的 HTTP 响应内容</li>
+</ul>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/777773900b8b5c45bd257c892671a7a154a7e4c10bea82647b40faec22aed512/68747470733a2f2f706963312e7a68696d672e636f6d2f76322d35626536313938306134633538396662376537343061323838306564306137345f722e6a7067"><img src="https://camo.githubusercontent.com/777773900b8b5c45bd257c892671a7a154a7e4c10bea82647b40faec22aed512/68747470733a2f2f706963312e7a68696d672e636f6d2f76322d35626536313938306134633538396662376537343061323838306564306137345f722e6a7067" alt="img" data-canonical-src="https://pic1.zhimg.com/v2-5be61980a4c589fb7e740a2880ed0a74_r.jpg" style="max-width: 100%;"></a></p>
+<ul>
+<li><strong>查看 Cookie</strong><br>
+点击 Cookies 标签可以查看在资源的 HTTP 请求和响应标头中传输的 Cookie 表。 只有传输 Cookie 时，此标签才可用。<br>
+下面是 Cookie 表中每一列的说明：</li>
+</ul>
+<ul>
+<li>Name：Cookie 的名称。</li>
+<li>Value：Cookie 的值。</li>
+<li>Domain：Cookie 所属的域。</li>
+<li>Path：Cookie 来源的网址路径。</li>
+<li>Expires / Max-Age：Cookie 的 expires 或 max-age 属性的值。</li>
+<li>Size：Cookie 的大小（以字节为单位）。</li>
+<li>HTTP：指示 Cookie 应仅由浏览器在 HTTP 请求中设置，而无法通过 JavaScript 访问。</li>
+<li>Secure：如果存在此属性，则指示 Cookie 应仅通过安全连接传输。</li>
+<li>priority：网站加载的优先级。</li>
+</ul>
+<p><a target="_blank" rel="noopener noreferrer" href=""><img alt="image-20240530225319996" style="max-width: 100%;"></a></p>
+<h3>优先级级别</h3>
+<ol>
+<li><strong>Highest</strong>：
+<ul>
+<li><strong>描述</strong>：最高优先级。</li>
+<li><strong>典型用例</strong>：关键的资源，如 HTML 文档和需要立即渲染的 CSS 文件。它们对页面的初始加载时间至关重要。</li>
+<li><strong>处理方式</strong>：浏览器会优先加载这些资源，以确保页面能够尽快呈现给用户。</li>
+</ul>
+</li>
+<li><strong>High</strong>：
+<ul>
+<li><strong>描述</strong>：高优先级。</li>
+<li><strong>典型用例</strong>：重要的脚本文件和重要的 CSS 文件，这些资源虽然不是立即需要，但对页面的功能和样式非常重要。</li>
+<li><strong>处理方式</strong>：这些资源会在关键资源之后立即加载，确保页面功能和样式尽快可用。</li>
+</ul>
+</li>
+<li><strong>Medium</strong>：
+<ul>
+<li><strong>描述</strong>：中等优先级。</li>
+<li><strong>典型用例</strong>：非关键但仍然重要的资源，如一些图片和次要脚本文件。</li>
+<li><strong>处理方式</strong>：浏览器会在高优先级资源加载完毕后加载这些资源，以确保页面的完整性。</li>
+</ul>
+</li>
+<li><strong>Low</strong>：
+<ul>
+<li><strong>描述</strong>：低优先级。</li>
+<li><strong>典型用例</strong>：次要资源，如一些不立即需要的图片、脚本文件和广告。</li>
+<li><strong>处理方式</strong>：这些资源会在所有较高优先级的资源加载完毕后再加载，以减少对页面主要功能的影响。</li>
+</ul>
+</li>
+<li><strong>Lowest</strong>：
+<ul>
+<li><strong>描述</strong>：最低优先级。</li>
+<li><strong>典型用例</strong>：不重要的资源，如延迟加载的图片和低优先级的广告内容。</li>
+<li><strong>处理方式</strong>：浏览器会在其它所有资源都加载完毕后再加载这些资源，以尽可能减少对用户体验的影响。</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><strong>复制、保存和清除网络信息</strong></li>
+</ul>
+<ul>
+<li>右键单击**<code class="notranslate">Requests Table</code><strong>（</strong><code class="notranslate">请求列表</code>**）以复制、保存或删除网络信息。一些选项是上下文相关的，所以如果想在单个资源上操作，需要右键单击该资源行。下面的列表描述了每个选项</li>
+<li><strong><code class="notranslate">Copy Response（复制响应）</code></strong><br>
+将所选资源的 HTTP 响应复制到系统剪贴板。</li>
+<li><strong><code class="notranslate">Copy as cURL（复制为cURL）</code></strong> 将所选资源的网络请求作为 cURL 命令字符串复制到系统剪贴板。 请参阅将复制请求为 cURL 命令。<br>
+<code class="notranslate">curl命令是一个利用URL规则在命令行下工作的文件传输工具。它支持文件的上传和下载，所以是综合传输工具，但按传统，习惯称curl为下载工具。作为一款强力工具，curl支持包括HTTP、HTTPS、ftp等众多协议，还支持POST、cookies、认证、从指定偏移处下载部分文件、用户代理字符串、限速、文件大小、进度条等特征。做网页处理流程和数据检索自动化，curl可以祝一臂之力。l</code></li>
+<li><strong><code class="notranslate">Copy All as HAR（全部复制为HAR）</code></strong><br>
+将所有资源复制到系统剪贴板作为 HAR 数据。 HAR 文件包含描述网络 “瀑布” 的 JSON 数据结构。一些第三方工具可以使用 HAR 文件中的数据重建网络瀑布。有关详细信息，请参阅 Web 性能强大工具：HTTP 归档（HAR）。</li>
+<li><strong><code class="notranslate">Save as HAR with Content（另存为带内容的HAR）</code></strong><br>
+将所有网络数据与每个页面资源一起保存到 HAR 文件中。 二进制资源（包括图像）被编码为 Base64 编码文本。</li>
+<li><strong><code class="notranslate">Clear Browser Cache（清除浏览器缓存）</code></strong><br>
+清除浏览器高速缓存。提示：您也可以从 Network Conditions(网络条件) 抽屉式窗格中启用或禁用浏览器缓存。</li>
+<li><strong><code class="notranslate">Clear Browser Cookies（清除浏览器Cookie）</code></strong><br>
+清除浏览器的 Cookie。</li>
+<li><strong><code class="notranslate">Open in Sources Panel（在源文件面板中打开）</code></strong><br>
+在 Sources(源文件) 面板中打开选定的资源。</li>
+<li><strong><code class="notranslate">Open Link in New Tab（在新标签页中打开链接）</code></strong><br>
+在新标签页中打开所选资源。您还可以在 Requests Table(请求列表) 中双击资源名称。</li>
+<li><strong><code class="notranslate">Copy Link Address（复制链接地址）</code></strong><br>
+将资源 URL 复制到系统剪贴板。</li>
+<li><strong><code class="notranslate">Save（保存）</code></strong><br>
+保存所选的文本资源。仅显示在文本资源上。</li>
+<li><strong><code class="notranslate">Replay XHR（重新发送XHR）</code></strong><br>
+重新发送所选的 XMLHTTPRequest。仅显示在 XHR 资源上。</li>
+</ul>
+<p><a target="_blank" rel="noopener noreferrer" href=""><img alt="image-20240530230159799" style="max-width: 100%;"></a></p>
+<ul>
+<li>
+<p><strong>查看资源发起者和依赖关系</strong></p>
+</li>
+<li>
+<p>按住SHIFT并移动鼠标到资源上可查看它的发起者和依赖关系。</p>
+</li>
+<li>
+<p>这部分是你鼠标悬停的资源的 TARGET(目标) 引用。</p>
+</li>
+<li>
+<p>从 TARGET(目标) 往上查找，第一个颜色编码为绿色的资源是 TARGET(目标) 的发起者。</p>
+</li>
+<li>
+<p>如果存在第二个颜色编码为绿色资源，那么这个是发起者的发起者。</p>
+</li>
+<li>
+<p>从 TARGET(目标) 向下查找，任何颜色编码为红色的资源都是 TARGET 的依赖。</p>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener noreferrer" href=""><img alt="image-20240530230952090" style="max-width: 100%;"></a></p>
+<ul>
+<li>异步加载的抓包一般在 XHR，JS 中</li>
+</ul>
+<p>JSON（JavaScript Object Notation）是一种轻量级的数据交换格式，易于人类阅读和编写，同时也易于机器解析和生成。JSON 通常用于在客户端和服务器之间传输数据。它的语法基于 JavaScript 对象表示法，但它独立于任何编程语言。</p>
+<h3>JSON 的基本语法</h3>
+<p>JSON 的数据结构是由两种结构组成的：</p>
+<ol>
+<li><strong>对象（Object）</strong>：由花括号 <code class="notranslate">{}</code> 包围，包含零个或多个键值对（key-value pairs）。</li>
+<li><strong>数组（Array）</strong>：由方括号 <code class="notranslate">[]</code> 包围，包含零个或多个值（values）。</li>
+</ol>
+<h4>例子</h4>
+<p>以下是一个简单的 JSON 对象和数组的例子：</p>
+<div class="highlight highlight-source-json"><pre class="notranslate">{
+  <span class="pl-ent">"name"</span>: <span class="pl-s"><span class="pl-pds">"</span>John<span class="pl-pds">"</span></span>,
+  <span class="pl-ent">"age"</span>: <span class="pl-c1">30</span>,
+  <span class="pl-ent">"isStudent"</span>: <span class="pl-c1">false</span>,
+  <span class="pl-ent">"address"</span>: {
+    <span class="pl-ent">"street"</span>: <span class="pl-s"><span class="pl-pds">"</span>123 Main St<span class="pl-pds">"</span></span>,
+    <span class="pl-ent">"city"</span>: <span class="pl-s"><span class="pl-pds">"</span>New York<span class="pl-pds">"</span></span>,
+    <span class="pl-ent">"zip"</span>: <span class="pl-s"><span class="pl-pds">"</span>10001<span class="pl-pds">"</span></span>
+  },
+  <span class="pl-ent">"phoneNumbers"</span>: [<span class="pl-s"><span class="pl-pds">"</span>123-456-7890<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>987-654-3210<span class="pl-pds">"</span></span>]
+}</pre></div>
+<h3>JSON 数据类型</h3>
+<ul>
+<li><strong>字符串（String）</strong>：必须用双引号包围。例："Hello"</li>
+<li><strong>数值（Number）</strong>：整数或浮点数，不需要引号。例：25, 3.14</li>
+<li><strong>布尔值（Boolean）</strong>：true 或 false。</li>
+<li><strong>数组（Array）</strong>：由方括号包围，包含一个有序的值列表。例：[1, 2, "three", true]</li>
+<li><strong>对象（Object）</strong>：由花括号包围，包含键值对。例：{"key": "value"}</li>
+<li><strong>null</strong>：表示空值。例：null</li>
+</ul>
+<h3>JSON 使用示例</h3>
+<h4>在 Python 中使用 JSON</h4>
+<p>Python 提供了 <code class="notranslate">json</code> 模块来处理 JSON 数据。以下是一些常见操作：</p>
+<ol>
+<li><strong>将 JSON 字符串解析为 Python 对象</strong>：</li>
+</ol>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">import</span> <span class="pl-s1">json</span>
+
+<span class="pl-s1">json_str</span> <span class="pl-c1">=</span> <span class="pl-s">'{"name": "John", "age": 30}'</span>
+<span class="pl-s1">data</span> <span class="pl-c1">=</span> <span class="pl-s1">json</span>.<span class="pl-en">loads</span>(<span class="pl-s1">json_str</span>)
+<span class="pl-en">print</span>(<span class="pl-s1">data</span>)  <span class="pl-c"># 输出：{'name': 'John', 'age': 30}</span></pre></div>
+<ol start="2">
+<li><strong>将 Python 对象编码为 JSON 字符串</strong>：</li>
+</ol>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">import</span> <span class="pl-s1">json</span>
+
+<span class="pl-s1">data</span> <span class="pl-c1">=</span> {
+    <span class="pl-s">"name"</span>: <span class="pl-s">"John"</span>,
+    <span class="pl-s">"age"</span>: <span class="pl-c1">30</span>,
+    <span class="pl-s">"isStudent"</span>: <span class="pl-c1">False</span>,
+    <span class="pl-s">"address"</span>: {
+        <span class="pl-s">"street"</span>: <span class="pl-s">"123 Main St"</span>,
+        <span class="pl-s">"city"</span>: <span class="pl-s">"New York"</span>,
+        <span class="pl-s">"zip"</span>: <span class="pl-s">"10001"</span>
+    },
+    <span class="pl-s">"phoneNumbers"</span>: [<span class="pl-s">"123-456-7890"</span>, <span class="pl-s">"987-654-3210"</span>]
+}
+
+<span class="pl-s1">json_str</span> <span class="pl-c1">=</span> <span class="pl-s1">json</span>.<span class="pl-en">dumps</span>(<span class="pl-s1">data</span>, <span class="pl-s1">indent</span><span class="pl-c1">=</span><span class="pl-c1">4</span>)
+<span class="pl-en">print</span>(<span class="pl-s1">json_str</span>)</pre></div>
+<ol start="3">
+<li><strong>读取 JSON 文件</strong>：</li>
+</ol>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">import</span> <span class="pl-s1">json</span>
+
+<span class="pl-k">with</span> <span class="pl-en">open</span>(<span class="pl-s">'data.json'</span>, <span class="pl-s">'r'</span>) <span class="pl-k">as</span> <span class="pl-s1">file</span>:
+    <span class="pl-s1">data</span> <span class="pl-c1">=</span> <span class="pl-s1">json</span>.<span class="pl-en">load</span>(<span class="pl-s1">file</span>)
+<span class="pl-en">print</span>(<span class="pl-s1">data</span>)</pre></div>
+<ol start="4">
+<li><strong>写入 JSON 文件</strong>：</li>
+</ol>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">import</span> <span class="pl-s1">json</span>
+
+<span class="pl-s1">data</span> <span class="pl-c1">=</span> {
+    <span class="pl-s">"name"</span>: <span class="pl-s">"John"</span>,
+    <span class="pl-s">"age"</span>: <span class="pl-c1">30</span>
+}
+
+<span class="pl-k">with</span> <span class="pl-en">open</span>(<span class="pl-s">'data.json'</span>, <span class="pl-s">'w'</span>) <span class="pl-k">as</span> <span class="pl-s1">file</span>:
+    <span class="pl-s1">json</span>.<span class="pl-en">dump</span>(<span class="pl-s1">data</span>, <span class="pl-s1">file</span>, <span class="pl-s1">indent</span><span class="pl-c1">=</span><span class="pl-c1">4</span>)</pre></div>
+<h3>JSON 的优点</h3>
+<ul>
+<li><strong>简洁和清晰</strong>：JSON 格式简单易读，适合人类阅读和书写。</li>
+<li><strong>轻量级</strong>：JSON 数据格式轻便，适合网络传输。</li>
+<li><strong>广泛支持</strong>：大多数编程语言都提供了处理 JSON 的库或模块。</li>
+</ul>
+<p>JSON 是目前网络数据交换的主要格式之一，广泛应用于 Web 开发、API 通信、配置文件等多个领域。</p>
+<h2>定位元素方法</h2>
+<p><a target="_blank" rel="noopener noreferrer" href=""><img alt="image-20240531134204451" style="max-width: 100%;"></a></p>
+<ul>
+<li>定位原始 xpath, 在 Elements 中点击箭头，定位指定的元素</li>
+<li>在定位元素的指定位置，鼠标右键弹出菜单选择框，选择 Copy 显示对应的元素定位方法。<br>
+点击：Copy Xpath，复制元素路径：//*[<a class="user-mention notranslate" data-hovercard-type="user" data-hovercard-url="/users/id/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="https://github.com/id">@id</a>="kw"]</li>
+<li><a target="_blank" rel="noopener noreferrer" href=""><img alt="image-20240531134415925" style="max-width: 100%;"></a></li>
+</ul>
+<p><strong>通过浏览器进行调试元素</strong></p>
+<p><strong>80% 的元素通过 F12 可以定位出来，20% 的元素通过 12 很难定位准确，要花费 80% 时间进行调试，如果在脚本中调试比较慢的一遍遍运行非常耗时，怎么能够在浏览器中较快提高调试的 xpath 定位速度呢？</strong><br>
+可以使用如下的方法：</p>
+<ol>
+<li>
+<p>使用快捷查询功能，在 Chrome 浏览器中：Ctrl+F 调出查询功能。<br>
+在下面的输入框，输入刚才的 Xpath=//*[<a class="user-mention notranslate" data-hovercard-type="user" data-hovercard-url="/users/id/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="https://github.com/id">@id</a>="kw"] 路径可以高亮在界面展示对应的元素。</p>
+<p><a target="_blank" rel="noopener noreferrer" href=""><img alt="image-20240531134651514" style="max-width: 100%;"></a></p>
+</li>
+<li>
+<p>通过 console 定位元素，选择 console 输入 $ 显示对应的值信息。</p>
+</li>
+</ol>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/d7d6b643a9a5b1361fe48fb874476e396793f81deaac76948b161acd7b583133/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f32303231303132373231323830343531312e706e673f782d6f73732d70726f636573733d696d6167652f77617465726d61726b2c747970655f5a6d46755a33706f5a57356e6147567064476b2c736861646f775f31302c746578745f6148523063484d364c7939696247396e4c6d4e7a5a473475626d56304c327876646d6c755a334e765a6e513d2c73697a655f31362c636f6c6f725f4646464646462c745f3730"><img src="https://camo.githubusercontent.com/d7d6b643a9a5b1361fe48fb874476e396793f81deaac76948b161acd7b583133/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f32303231303132373231323830343531312e706e673f782d6f73732d70726f636573733d696d6167652f77617465726d61726b2c747970655f5a6d46755a33706f5a57356e6147567064476b2c736861646f775f31302c746578745f6148523063484d364c7939696247396e4c6d4e7a5a473475626d56304c327876646d6c755a334e765a6e513d2c73697a655f31362c636f6c6f725f4646464646462c745f3730" alt="img" data-canonical-src="https://img-blog.csdnimg.cn/20210127212804511.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xvdmluZ3NvZnQ=,size_16,color_FFFFFF,t_70" style="max-width: 100%;"></a></p>
+<p>3.xpath 定位：</p>
+<ul>
+<li>
+<p>$()  返回与指定的 CSS 选择器相匹配的第一个元素，等同于 document.querySelector()</p>
+</li>
+<li>
+<p>$$() 返回与指定的 CSS 选择器相匹配的所有元素的数组，等同于 document.querySelectorAll()</p>
+</li>
+<li>
+<p>$x() 返回与指定的 XPath 相匹配的所有元素的数组</p>
+</li>
+<li>
+<p>语法格式：$x(xpath) 表达</p>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/e3ec1629fb98f99b10bf83b179ba85626ab912a1f4f531ed372d876fe8562105/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f32303231303132373231323831373731332e706e673f782d6f73732d70726f636573733d696d6167652f77617465726d61726b2c747970655f5a6d46755a33706f5a57356e6147567064476b2c736861646f775f31302c746578745f6148523063484d364c7939696247396e4c6d4e7a5a473475626d56304c327876646d6c755a334e765a6e513d2c73697a655f31362c636f6c6f725f4646464646462c745f3730"><img src="https://camo.githubusercontent.com/e3ec1629fb98f99b10bf83b179ba85626ab912a1f4f531ed372d876fe8562105/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f32303231303132373231323831373731332e706e673f782d6f73732d70726f636573733d696d6167652f77617465726d61726b2c747970655f5a6d46755a33706f5a57356e6147567064476b2c736861646f775f31302c746578745f6148523063484d364c7939696247396e4c6d4e7a5a473475626d56304c327876646d6c755a334e765a6e513d2c73697a655f31362c636f6c6f725f4646464646462c745f3730" alt="img" data-canonical-src="https://img-blog.csdnimg.cn/20210127212817713.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xvdmluZ3NvZnQ=,size_16,color_FFFFFF,t_70" style="max-width: 100%;"></a></p>
+<h2>发送请求</h2>
+<ul>
+<li>使用 <code class="notranslate">requests.get(url)</code> 发送 HTTP GET 请求，获取网页内容。</li>
+</ul></div>
+<div style="font-size:small;margin-top:8px;float:right;"></div>
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+</div>
+    <div id="footer">Copyright © <span id="year"></span><a href="https://diner888.github.io/Vickers888.github.io"> Blog Title </a>
+<p>
+<span id="runday"></span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a>
+</p>
+
+<script>
+if(""!=""){
+    var now=new Date();
+    var startSite=new Date("");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("year").innerHTML=now.getFullYear();
+    if(""!=""){document.getElementById("runday").innerHTML=" • "+"网站运行"+diffDay+"天"+" • ";}
+    else{document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";}
+}
+</script>
+</div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n\n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","diner888/Vickers888.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+</script>
+
+
+</html>
